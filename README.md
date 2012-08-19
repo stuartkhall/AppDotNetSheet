@@ -21,7 +21,7 @@ Like the API this code is alpha and subject to a lot of changes. I wouldn't ship
 
     touch iOS-Example/iOS-Example/Credentials.h
 
-Now create a new app at the (APP.NET developer site)[https://alpha.app.net/developer/apps/] and add your details to Credentials.h:
+Now create a new app at the [APP.NET developer site](https://alpha.app.net/developer/apps/) and add your details to Credentials.h:
 
     #import <Foundation/Foundation.h>
     static NSString* const kAppDotNetClientId = @"your_client_id";
@@ -42,7 +42,20 @@ You'll also need AFNetworking:
 
     git submodule add https://github.com/AFNetworking/AFNetworking.git AFNetworking
 
-Then just drag the AppDotNetClient and AppDotNetSheet folders into your app.
+Then drag the AppDotNetClient and AppDotNetSheet folders into your app.
+
+Initialise the client with your details from the [APP.NET developer site](https://alpha.app.net/developer/apps/).
+
+    #import "AppDotNetClient.h"
+    ...
+    [AppDotNetClient initWithClientId:kAppDotNetClientId
+                       andCallbackURL:kAppDotNetCallbackURL
+                            andScopes:[kAppDotNetScopes componentsSeparatedByString:@" "]];
+
+And finally show the control:
+
+    AppDotNetComposeViewController* controller = [[AppDotNetComposeViewController alloc] init];
+    [self presentModalViewController:controller animated:NO];
 
 ## TODO:
 If you are a designer or developer please jump in and help out.
